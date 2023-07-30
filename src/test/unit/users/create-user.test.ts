@@ -6,9 +6,10 @@ import enums from '@src/configs/enums';
 
 const { expect } = chai;
 
-const app = new Application();
 
 chai.use(chaiHttp);
+
+const app = new Application().express;
 
 // @ts-ignore
 describe('Create User', () => {

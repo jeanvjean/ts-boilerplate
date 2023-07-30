@@ -3,7 +3,7 @@ import env from './env';
 
 const pg = pgPromise({promiseLib: global, noWarnings: true});
 class DbConnection {
-	static NODE_ENV = `${process.env.NODE_ENV}`;
+	static NODE_ENV = `${env?.NODE_ENV}`;
 
 	static databaseString = env?.DATABASE_STRING;
 
