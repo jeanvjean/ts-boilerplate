@@ -8,6 +8,7 @@ import AppConfig from './configs/app';
 import {ctrl} from './controllers';
 import router from './routes';
 import logger from './utils/logger';
+import env from './configs/env';
 
 // @ts-ignore
 global.logger = logger
@@ -20,14 +21,14 @@ class Application {
 	  this.configure();
 	  this.handleExceptions();
 	  this.express.listen(AppConfig.port, () => {
-		// @ts-ignore
-	    logger.info(`${AppConfig.appName} is listening at port ${AppConfig.port}`);
-	    // @ts-ignore
-	    conf.postgresDb.connect().then((con: any) => {
 			// @ts-ignore
-			logger.info(`connected to ${con.client.database} database`);
-	    });
-	  });
+			logger.info(`${AppConfig.appName} is listening at port ${AppConfig.port}`);
+			// @ts-ignore				
+			conf.postgresDb.connect().then((con: any) => {
+				// @ts-ignore
+				logger.info(`connected to ${con.client.database} database`);
+			});
+	   });
 	}
 
 	private configure(): void {

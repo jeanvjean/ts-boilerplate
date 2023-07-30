@@ -17,7 +17,7 @@
         "seed:up": "db-migrate up:seed --config database.json",
         "migrate:fresh": "npm run migrate_down && npm run migrate_up && npm run seed:down && npm run seed:up",
         "lint": "eslint --ext .ts,.json --max-warnings=0 src",
-        "test": "NODE_ENV=test nyc mocha -r ts-node/register -r tsconfig-paths/register src/test/**/*.ts --exit",
+        "test": "cross-env NODE_ENV=test BOILER_DEV_PORT=9100 nyc --reporter=lcov --reporter=text --reporter=text-summary mocha -r ts-node/register -r tsconfig-paths/register src/test/index.ts --exit",
         "test:unit": "NODE_ENV=test nyc mocha -r ts-node/register -r tsconfig-paths/register --grep @unit src/**/*.spec.ts",
         "build": "rm -rf ./dist && npx tsc && npm i --only=prod",
         "docs": "node_modules/.bin/jsdoc -c jsdoc.json"
@@ -34,6 +34,7 @@
         "body-parser": "^1.20.2",
         "chai-http": "^4.3.0",
         "cors": "^2.8.5",
+        "cross-env": "^7.0.3",
         "db-migrate": "^0.11.13",
         "db-migrate-pg": "^1.2.2",
         "dotenv": "^8.6.0",
@@ -48,6 +49,7 @@
         "winston-papertrail": "git+https://github.com/kenperkins/winston-papertrail.git#v2"
     },
     "devDependencies": {
+        "chai": "^4.3.7",
         "eslint": "^7.0.0",
         "eslint-config-google": "^0.14.0",
         "mocha": "^7.2.0",
