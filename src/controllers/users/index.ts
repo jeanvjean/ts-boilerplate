@@ -1,3 +1,4 @@
+import { UserInterface } from './../../modules/interfaces/interface.users';
 import {Response, Request, RequestHandler} from 'express';
 import Ctrl from '../ctrl';
 import User from '../../modules/users';
@@ -16,7 +17,7 @@ class UserController extends Ctrl {
     create(): RequestHandler {
       return async (req: Request, res: Response) => {
         try {
-          const data = await UserModule.create({...req.body});
+          const data: UserInterface | undefined = await UserModule.create({...req.body});
           this.ok(res, enums.RESOURCE_CREATED('user'), data);
         } catch (error) {
           // @ts-ignore

@@ -1,3 +1,4 @@
+import { UserInterface } from './../modules/interfaces/interface.users';
 import Ctrl from '../controllers/ctrl';
 import {Request, Response, NextFunction} from 'express';
 import {RequestHandler} from 'express-serve-static-core';
@@ -21,8 +22,8 @@ export default class DriverMiddleware extends Ctrl {
     return async (req: Request, res: Response, next: NextFunction) => {
       try {
         const {body} = req;
-        const payload = body.email;
-        const user = await serviceModule.getUser({ email: payload });
+        const payload: string = body.email;
+        const user: UserInterface = await serviceModule.getUser({ email: payload });
         if (user) {
           return this.errorResponse(req, res, enums.HTTP_BAD_REQUEST, enums.RESOURCE_EXISTS('user'));
         }

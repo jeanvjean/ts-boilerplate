@@ -1,7 +1,11 @@
 import {verify, sign} from 'jsonwebtoken';
 
+export type hashUserPayload = {
+  email: string,
+  id: string
+}
 
-export const signToken = async (data: any) =>{
+export const signToken = async (data: hashUserPayload) =>{
   try {
     const token = await sign(data, `${process.env.JWT_SECRET}`, {expiresIn: '1h'});
     return token;
